@@ -14,6 +14,11 @@ import { UserService } from './services/user.service';
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { MockBackend } from '@angular/http/testing';
 
+import { OAuthService, JwksValidationHandler,OAuthModule  } from 'angular-oauth2-oidc';
+import { HttpClient,HttpClientModule  } from '@angular/common/http';
+import { UrlHelperService } from 'angular-oauth2-oidc';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +29,9 @@ import { MockBackend } from '@angular/http/testing';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    HttpClientModule ,
+    OAuthModule.forRoot()
   ],
   providers: [
     AuthGuard,
@@ -32,7 +39,11 @@ import { MockBackend } from '@angular/http/testing';
     UserService,
     fakeBackendProvider,
     MockBackend,
-    BaseRequestOptions
+    BaseRequestOptions,
+    OAuthService,
+    HttpClient,
+    UrlHelperService
+    
   ],
   bootstrap: [AppComponent]
 })

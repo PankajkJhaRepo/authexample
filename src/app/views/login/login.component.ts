@@ -3,6 +3,7 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { Router } from "@angular/router";
 import { Component } from "@angular/core";
 import { OAuthService } from "angular-oauth2-oidc";
+import { googleAuthConfig } from "../../app-config/google-auth/google-auth.config";
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html'
@@ -17,13 +18,12 @@ export class LoginComponent implements OnInit{
             ) {
     }
     ngOnInit(){
-       // this.authenticationService.logout();
-       this.oauthService.logOut();
        
     }
     login(){
         this.loading=true;
-        this.oauthService.initImplicitFlow();
+        this.oauthService.initImplicitFlow('some-state');
+        
         
         // this.authenticationService.login(this.model.username,this.model.password)
         // .subscribe(result=> {

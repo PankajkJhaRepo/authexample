@@ -13,10 +13,10 @@ export class AuthGuard implements CanActivate{
     }
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-       var token= this.oauthService.getAccessToken()
-       let claims = this.oauthService.getIdentityClaims();
-       let validtoken=this.oauthService.hasValidIdToken();
-       if(token){
+    //    var token= this.oauthService.getAccessToken()
+    //    let claims = this.oauthService.getIdentityClaims();
+    //    let validtoken=this.oauthService.hasValidIdToken();
+       if(this.oauthService.hasValidAccessToken()){
         //if(sessionStorage.getItem('currentUser')){
             return true;
         }

@@ -4,6 +4,7 @@ import { AuthenticationService } from "./authentication.service";
 import { Observable } from "rxjs/Observable";
 import { User } from "../models/user";
 import { map } from "rxjs/operator/map";
+import { UserProfile } from "../models/profile";
 // import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -13,7 +14,7 @@ export class UserService{
 
 
     }
-    getUsers():Observable<User[]>{
+    getUser(profile:UserProfile):Observable<UserProfile>{
         let header=new Headers({'Authorization': 'Bearer' + this.authenticationService.token})
         let options=new RequestOptions({headers:header});
         return this.http.get('/api/users',options).map((response: Response) => response.json());

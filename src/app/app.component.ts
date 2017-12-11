@@ -10,7 +10,7 @@ import { googleAuthConfig } from './app-config/google-auth/google-auth.config';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'IOT information app';
 
 
   // constructor(private oauthService: OAuthService) {
@@ -42,7 +42,7 @@ export class AppComponent {
     
           // Optional
           this.oauthService.setupAutomaticSilentRefresh();
-    
+
           this.oauthService.events.subscribe(e => {
             console.debug('oauth/oidc event', e);
           });
@@ -53,6 +53,7 @@ export class AppComponent {
           
           this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
              this.oauthService.loadUserProfile().then(res=>{
+              console.log('profile loaded');
                console.log(res);
              })
           });

@@ -33,7 +33,7 @@ issuer: 'https://accounts.google.com',
   // The first three are defined by OIDC. The 4th is a usecase-specific one
   scope: 'openid profile email',
 
-  showDebugInformation: true,
+  showDebugInformation: false,
 
   sessionChecksEnabled: true}
 

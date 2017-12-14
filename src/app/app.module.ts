@@ -19,7 +19,9 @@ import { HttpClient,HttpClientModule  } from '@angular/common/http';
 import { UrlHelperService } from 'angular-oauth2-oidc';
 import { FileUploadComponent } from './component/file-upload/file-upload.component';
 import { FileService } from './component/file-upload/file.service';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatToolbarModule,} from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { FileService } from './component/file-upload/file.service';
     HttpModule,
     routing,
     HttpClientModule ,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatTabsModule,
   ],
   providers: [
     AuthGuard,

@@ -11,6 +11,18 @@ import { googleAuthConfig } from './app-config/google-auth/google-auth.config';
 })
 export class AppComponent {
   title = 'IOT information app';
+  navLinks=[
+    {
+      path:'home',
+      label:'User Profile',
+      isActive:true
+    },
+    {
+      path:'images',
+      label:'Images',
+      isActive:false
+    }
+  ]
 
 
   // constructor(private oauthService: OAuthService) {

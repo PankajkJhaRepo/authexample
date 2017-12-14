@@ -24,10 +24,21 @@
                 </div>
                 <div class="form-group">
                         <label for="name" class="control-label">Image</label>
-                        <div >
+                            <div>
+                                <app-file-upload 
+                                  userId="profile.email" 
+                                  imageType="UserProfile" 
+                                  [pictureUrl]="profile.pictureUrl"
+                                  maxFiles="1"
+                                  maxSize="2"
+                                  fileExt="JPG, GIF, PNG"
+                                  (uploadStatus)="refreshImages($event)" >
+                                </app-file-upload>
+                            </div>
+                        <!-- <div >
                             <img id="name" class="form-control" [src]="profile.pictureUrl" class="image" name="name" height="80px" width="80px">
                             <input name="myFile" type="file" accept="image/*"  (change)="onChange($event)">
-                        </div> 
+                        </div>  -->
                 </div>
                 <div class="form-group">
                         <label for="employeeID" class="control-label">Employee Id</label>
@@ -35,6 +46,8 @@
                             <input id="name" class="form-control" [(ngModel)]="profile.employeeID" name="employeeID">
                         </div> 
                 </div>
+
+               
             </form>
          
      </div>

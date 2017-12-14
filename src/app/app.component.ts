@@ -53,7 +53,8 @@ export class AppComponent {
           
           this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
              this.oauthService.loadUserProfile().then(res=>{
-              console.log('profile loaded');
+               
+                console.log('profile loaded');
                console.log(res);
              })
           });

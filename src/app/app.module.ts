@@ -11,19 +11,22 @@ import { AuthGuard } from './modules/authentication/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { BaseRequestOptions } from '@angular/http';
 import { UserService } from './services/user.service';
-import { fakeBackendProvider } from './helpers/fake-backend';
-import { MockBackend } from '@angular/http/testing';
+//import { fakeBackendProvider } from './helpers/fake-backend';
+//import { MockBackend } from '@angular/http/testing';
 
 import { OAuthService, JwksValidationHandler,OAuthModule  } from 'angular-oauth2-oidc';
 import { HttpClient,HttpClientModule  } from '@angular/common/http';
 import { UrlHelperService } from 'angular-oauth2-oidc';
+import { FileUploadComponent } from './component/file-upload/file-upload.component';
+import { FileService } from './component/file-upload/file.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -37,13 +40,13 @@ import { UrlHelperService } from 'angular-oauth2-oidc';
     AuthGuard,
     AuthenticationService,
     UserService,
-    fakeBackendProvider,
-    MockBackend,
+    //fakeBackendProvider,
+    //MockBackend,
     BaseRequestOptions,
     OAuthService,
     HttpClient,
-    UrlHelperService
-    
+    UrlHelperService,
+    FileService
   ],
   bootstrap: [AppComponent]
 })

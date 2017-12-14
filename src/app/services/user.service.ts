@@ -18,7 +18,11 @@ export class UserService{
         let header=new Headers({'Authorization': 'Bearer' + this.authenticationService.token})
         let options=new RequestOptions({headers:header});
         return this.http.get('/api/users',options).map((response: Response) => response.json());
- 
-       
+    }
+    saveUser(profile:UserProfile):boolean{
+        let header=new Headers({'Authorization': 'Bearer' + this.authenticationService.token})
+        let options=new RequestOptions({headers:header});
+       // this.http.post()
+       return true;
     }
 }

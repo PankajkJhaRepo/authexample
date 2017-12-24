@@ -1,0 +1,18 @@
+.col-2 {
+
+    & > * {
+        float: left;
+    }
+    & > :first-child {
+        width: 20%;
+    }
+
+    & > :last-child {
+        width: 80%;
+    }
+    &:after {
+        display: table;
+        clear: both;
+    }
+
+}

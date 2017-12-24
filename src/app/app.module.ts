@@ -22,13 +22,17 @@ import { FileService } from './component/file-upload/file.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule,} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
+import { UserImagesComponent } from './views/user-images/user-images.component';
+import { AppInfoComponent } from './views/app-info/app-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    UserImagesComponent,
+    AppInfoComponent
   ],
   imports: [
     BrowserModule,

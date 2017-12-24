@@ -1,4 +1,4 @@
-import { Component,ElementRef } from "@angular/core";
+import { Component,ElementRef,Output,EventEmitter } from "@angular/core";
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
@@ -7,7 +7,8 @@ import { OAuthService } from "angular-oauth2-oidc";
 
 @Component({
     moduleId:module.id,
-    templateUrl:'home.component.html'
+    templateUrl:'home.component.html',
+    styleUrls:['home.component.scss']
 })
 export class HomeComponent implements OnInit {
     user:User[]=[]
@@ -15,6 +16,10 @@ export class HomeComponent implements OnInit {
         loginName:''
     };
     claims:any;
+
+    @Output()
+    applicationLoggedIn: EventEmitter<LoginEvent>;
+
     constructor(private userService:UserService,
                 private oauthService:OAuthService,
                 private element:ElementRef
@@ -23,6 +28,7 @@ export class HomeComponent implements OnInit {
         
     }
     ngOnInit(){
+        this.applicationLoggedIn=new EventEmitter<LoginEvent>();
         this.claims = this.oauthService.getIdentityClaims();
         this.profile.email=this.claims.email;
         this.profile.loginName=this.claims.name;
@@ -32,6 +38,7 @@ export class HomeComponent implements OnInit {
         this.userService.getUser(this.profile)
         .subscribe(usr=>{
             //this.profile=usr;
+            this.applicationLoggedIn.emit({"profile":this.profile });
         });
     }
     onChange(event) {
@@ -50,3 +57,6 @@ export class HomeComponent implements OnInit {
       }
 
 }
+export class LoginEvent{
+    profile:UserProfile
+    }

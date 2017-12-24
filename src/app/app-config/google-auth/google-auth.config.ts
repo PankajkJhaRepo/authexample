@@ -21,6 +21,8 @@ issuer: 'https://accounts.google.com',
   //redirectUri: window.location.origin + '/index.html',
   redirectUri: window.location.origin + '/index.html',
 
+  
+
   // URL of the SPA to redirect the user after silent refresh
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
 
@@ -33,6 +35,7 @@ issuer: 'https://accounts.google.com',
   // The first three are defined by OIDC. The 4th is a usecase-specific one
   scope: 'openid profile email',
 
+  
   showDebugInformation: false,
 
   sessionChecksEnabled: true}

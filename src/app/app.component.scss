@@ -1,3 +1,14 @@
-.header{
-    color: red;
+.container{
+    padding: 0 16px;
+}
+mat-toolbar-row{
+    justify-content: space-between;
+}
+
+a[mat-tab-link]{
+    color: #EEE;
+}
+
+nav /deep/ mat-ink-bar{
+background-color: #FFEB3B !important;
 }

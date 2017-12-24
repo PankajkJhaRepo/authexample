@@ -11,9 +11,11 @@ import { googleAuthConfig } from './app-config/google-auth/google-auth.config';
 })
 export class AppComponent {
   title = 'IOT information app';
+  isVisible=false;
+  isLoggedIn:boolean=false;
   navLinks=[
     {
-      path:'home',
+      path:'/',
       label:'User Profile',
       isActive:true
     },
@@ -51,24 +53,27 @@ export class AppComponent {
           this.oauthService.configure(googleAuthConfig);
           this.oauthService.tokenValidationHandler = new JwksValidationHandler();
           this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    
+          
           // Optional
           this.oauthService.setupAutomaticSilentRefresh();
 
-          this.oauthService.events.subscribe(e => {
-            console.debug('oauth/oidc event', e);
-          });
-    
-          this.oauthService.events.filter(e => e.type === 'session_terminated').subscribe(e => {
-            console.debug('Your session has been terminated!');
+          // this.oauthService.events.subscribe(e => {
+          //   console.debug('oauth/oidc event', e);
+          // });
+          
+        
+
+          this.oauthService.events.filter(e => e.type === 'logout').subscribe(e => {
+            this.isLoggedIn=false;
+           // console.debug('Your session has been terminated!');
           });
           
           this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
-             this.oauthService.loadUserProfile().then(res=>{
-               
-                console.log('profile loaded');
-               console.log(res);
-             })
+            this.isLoggedIn=true;
+            // this.oauthService.loadUserProfile().then(res=>{
+            //     console.log('profile loaded');
+            //    console.log(res);
+            //  })
           });
     
         }

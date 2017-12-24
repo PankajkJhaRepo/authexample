@@ -1,11 +1,20 @@
+<div class="row">
 <div class="">
     <div class="row">
          <p><a [routerLink]="['/login']">Logout</a></p>
     </div>
-     <div class="row">
+    <app-file-upload 
+    userId="profile.email" 
+    imageType="UserProfile" 
+    [pictureUrl]="profile.pictureUrl"
+    maxFiles="1"
+    maxSize="2"
+    fileExt="JPG, GIF, PNG"
+    (uploadStatus)="refreshImages($event)" >
+  </app-file-upload>
             <form name="profile" class="form-horizontal" #myprofile="ngForm" id="myprofile">
                 <div class="form-group">
-                    <label for="name" class="control-label">Profile login name</label>
+                    <label for="name"  class="control-label">Profile login name</label>
                     <div >
                         <input id="name" class="control-label" [(ngModel)]="profile.loginName" disabled name="profileLoginName">
                     </div> 
@@ -25,15 +34,7 @@
                 <div class="form-group">
                         <label for="name" class="control-label">Image</label>
                             <div>
-                                <app-file-upload 
-                                  userId="profile.email" 
-                                  imageType="UserProfile" 
-                                  [pictureUrl]="profile.pictureUrl"
-                                  maxFiles="1"
-                                  maxSize="2"
-                                  fileExt="JPG, GIF, PNG"
-                                  (uploadStatus)="refreshImages($event)" >
-                                </app-file-upload>
+                                
                             </div>
                         <!-- <div >
                             <img id="name" class="form-control" [src]="profile.pictureUrl" class="image" name="name" height="80px" width="80px">

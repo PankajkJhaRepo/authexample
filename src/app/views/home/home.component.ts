@@ -1,7 +1,7 @@
 import { Component,ElementRef,Output,EventEmitter } from "@angular/core";
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
-import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import { OnInit,AfterViewInit } from "@angular/core/src/metadata/lifecycle_hooks";
 import { UserProfile } from "../../models/profile";
 import { OAuthService } from "angular-oauth2-oidc";
 
@@ -10,13 +10,13 @@ import { OAuthService } from "angular-oauth2-oidc";
     templateUrl:'home.component.html',
     styleUrls:['home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
     user:User[]=[]
     profile:UserProfile={
         loginName:''
     };
     claims:any;
-
+    profileImage:any;
     @Output()
     applicationLoggedIn: EventEmitter<LoginEvent>;
 
@@ -24,8 +24,6 @@ export class HomeComponent implements OnInit {
                 private oauthService:OAuthService,
                 private element:ElementRef
     ) {
-     
-        
     }
     ngOnInit(){
         this.applicationLoggedIn=new EventEmitter<LoginEvent>();
@@ -34,15 +32,22 @@ export class HomeComponent implements OnInit {
         this.profile.loginName=this.claims.name;
         this.profile.name=this.profile.loginName;
         this.profile.pictureUrl=this.claims.picture;
-
+    }
+    ngAfterViewInit(){
         this.userService.getUser(this.profile)
         .subscribe(usr=>{
-            //this.profile=usr;
+            
+            if(usr){
+                this.profile=usr;
+            }else{
+                this.saveUser();
+            }
             this.applicationLoggedIn.emit({"profile":this.profile });
         });
     }
     onChange(event) {
         console.log('onChange');
+        this.profileImage=event;
         var reader = new FileReader();
         var image = this.element.nativeElement.querySelector('.image');
 
@@ -54,6 +59,14 @@ export class HomeComponent implements OnInit {
 
         reader.readAsDataURL(event.target.files[0]);
         
+      }
+      saveUser(){
+        // this.userService.saveProfileImage(this.profileImage).subscribe(res=>{
+        //     console.log(res);
+        // })
+        this.userService.saveUser(this.profile).subscribe(res=>{
+            console.log(res);
+        })
       }
 
 }

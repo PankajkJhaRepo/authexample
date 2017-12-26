@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { googleAuthConfig } from './app-config/google-auth/google-auth.config';
+import { UserProfile } from './models/profile';
+import { UserService } from './services/user.service';
 
 
 @Component({
@@ -42,7 +44,8 @@ export class AppComponent {
   // }
 
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService
+              ) {
     
     this.configureWithNewConfigApi();
  }
@@ -70,6 +73,7 @@ export class AppComponent {
           
           this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
             this.isLoggedIn=true;
+            console.log('token_received');
             // this.oauthService.loadUserProfile().then(res=>{
             //     console.log('profile loaded');
             //    console.log(res);
@@ -77,6 +81,7 @@ export class AppComponent {
           });
     
         }
+        
     
   
 }

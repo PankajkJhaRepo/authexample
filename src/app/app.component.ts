@@ -17,6 +17,7 @@ export class AppComponent {
   isLoggedIn:boolean=false;
   loggedinImage:string='';
   claim:any={};
+  profile:UserProfile=new UserProfile();
   navLinks=[
     {
       path:'/',
@@ -46,7 +47,8 @@ export class AppComponent {
   // }
 
 
-  constructor(private oauthService: OAuthService
+  constructor(private oauthService: OAuthService,
+    private userService:UserService
               ) {
     
     this.configureWithNewConfigApi();
@@ -77,7 +79,13 @@ export class AppComponent {
           this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
             this.isLoggedIn=true;
             this.claim = this.oauthService.getIdentityClaims();
-            this.loggedinImage= this.claim.picture
+            this.loggedinImage= this.claim.picture;
+            this.profile.email=this.claim.email;
+            this.userService.getUser(this.profile)
+            .subscribe(usr=>{
+                this.profile=usr;
+                this.loggedinImage=this.profile.pictureUrl;
+            });
            // console.log('token_received');
             // this.oauthService.loadUserProfile().then(res=>{
             //     console.log('profile loaded');

@@ -26,7 +26,7 @@
         (uploadStatus)="refreshImages($event)" >  -->
         <div>
             <img width="50px" height="50px" [src]="img.url" >
-            <button name="setAsProfile">Set as profile image</button>
+            <button name="setAsProfile" (click)="SetAsProfile(img)" >Set as profile image</button>
         </div>
     </li>
         

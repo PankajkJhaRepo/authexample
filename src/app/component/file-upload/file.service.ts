@@ -13,8 +13,8 @@ export class FileService {
 
         let headers = new Headers();
         let options = new RequestOptions({ headers: headers });
-        //options.params = parameters;
-        return  this.http.post(this._baseURL , files)
+        options.params = parameters;
+        return  this.http.post(this._baseURL , files,options)
                  .map(response => response.json())
                  .catch(error =>
                      Observable.throw(error)

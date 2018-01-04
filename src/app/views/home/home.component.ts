@@ -68,8 +68,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
             console.log(res);
         })
       }
+      onSubmit(){
+        this.saveUser();
+      }
 
 }
+
 export class LoginEvent{
     profile:UserProfile
     }

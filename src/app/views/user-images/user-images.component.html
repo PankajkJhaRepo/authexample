@@ -1,3 +1,33 @@
 <h1>
     Images
 </h1>
+<div>
+    
+     <app-file-upload 
+        [userId]="claim.email" 
+        imageType="Images" 
+        [pictureUrl]=""
+        maxFiles="1"
+        maxSize="2"
+        fileExt="JPG, GIF, PNG"
+        (uploadStatus)="refreshImages($event)" > </app-file-upload>
+</div>
+
+<ul *ngFor="let img of allImages" >
+    <li>{{img.name}}</li>
+   <li> 
+        <!-- <app-file-upload 
+        userId="profile.email" 
+        imageType="UserProfile" 
+        [pictureUrl]="profile.pictureUrl"
+        maxFiles="1"
+        maxSize="2"
+        fileExt="JPG, GIF, PNG"
+        (uploadStatus)="refreshImages($event)" >  -->
+        <div>
+            <img width="50px" height="50px" [src]="img.url" >
+            <button name="setAsProfile">Set as profile image</button>
+        </div>
+    </li>
+        
+</ul>

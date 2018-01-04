@@ -24,6 +24,7 @@ import {MatToolbarModule,} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { UserImagesComponent } from './views/user-images/user-images.component';
 import { AppInfoComponent } from './views/app-info/app-info.component';
+import { UserImageService } from './services/user-images.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AppInfoComponent } from './views/app-info/app-info.component';
     AuthGuard,
     AuthenticationService,
     UserService,
+    UserImageService,
     //fakeBackendProvider,
     //MockBackend,
     BaseRequestOptions,

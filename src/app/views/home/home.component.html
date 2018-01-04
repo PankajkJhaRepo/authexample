@@ -1,9 +1,9 @@
 <div class="row">
 <div class="">
-    <div class="row">
+    <!-- <div class="row">
          <p><a [routerLink]="['/login']">Logout</a></p>
-    </div>
-    <app-file-upload 
+    </div> -->
+    <!-- <app-file-upload 
     userId="profile.email" 
     imageType="UserProfile" 
     [pictureUrl]="profile.pictureUrl"
@@ -11,7 +11,7 @@
     maxSize="2"
     fileExt="JPG, GIF, PNG"
     (uploadStatus)="refreshImages($event)" >
-  </app-file-upload>
+  </app-file-upload> -->
             <form name="profile" class="form-horizontal" #myprofile="ngForm" id="myprofile">
                 <div class="form-group">
                     <label for="name"  class="control-label">Profile login name</label>
@@ -47,9 +47,12 @@
                             <input id="name" class="form-control" [(ngModel)]="profile.employeeID" name="employeeID">
                         </div> 
                 </div>
-
-               
             </form>
          
      </div>
+     <div class="row">
+        <div class="btn-toolbar pull-right">
+          <button type="button" class="btn btn-default" [disabled]="!myprofile.form.valid" (click)="onSubmit()">Update profile</button>
+        </div>
+      </div>
 </div>

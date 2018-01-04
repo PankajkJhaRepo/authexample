@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { User } from "../models/user";
 import { map } from "rxjs/operator/map";
 import { UserProfile } from "../models/profile";
+import { forEach } from "@angular/router/src/utils/collection";
 
 // import 'rxjs/add/operator/map'
 
@@ -67,4 +68,5 @@ export class UserService{
        // this.http.post('/api/image',options).map((response: Response) => response.json());
        // return result;
     }
+    
 }

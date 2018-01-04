@@ -19,5 +19,6 @@
         </div>
         <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     </form>
-    <button [disabled]="loading" *ngIf="isLoggedIn" class="btn btn-primary" (click)="logout();"  >Logout</button> 
+    <button [disabled]="loading" *ngIf="isLoggedIn" class="btn btn-primary" (click)="logout();"  >Sign out</button> 
+    <img id="loginImage" *ngIf="isLoggedIn" [src]="loginImage"  name="loginImage" height="80px" width="80px">
 </div>

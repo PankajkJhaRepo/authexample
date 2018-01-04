@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit{
     loading=false
     error=''
     @Input() isLoggedIn:boolean;
-    
+    @Input() loginImage:string;
     constructor(private router:Router,
                 private authenticationService:AuthenticationService,
                 private oauthService:OAuthService
@@ -27,9 +27,12 @@ export class LoginComponent implements OnInit{
         //     //this.isLoggedIn=true;
         //     console.log("oauthService event " + e);
         // });
+        // this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
+
+        // });
     }
     logout(){
-        this.loading=true;
+      this.loading=true;
        this.oauthService.logOut(false);
        this.router.navigate(['/appinfo']);
        this.loading=false;

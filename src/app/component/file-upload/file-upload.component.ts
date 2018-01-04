@@ -8,6 +8,7 @@ import { FileService } from './file.service';
   templateUrl: './file-upload.component.html'
 })
 export class FileUploadComponent implements OnInit {
+      selectedimage:any;
       errors: Array<string> =[];
       dragAreaClass: string = 'dragarea';
 	  @Input() userId: string;// it is registered Email of the user. Can be used to set Profile Face for persistant storage in Face Identification storage
@@ -23,7 +24,7 @@ export class FileUploadComponent implements OnInit {
     ngOnInit() { }
 
     onFileChange(event){
-       //let files = event.target.files; 
+       this.selectedimage = event.target.files; 
        //this.saveFiles(files);
        console.log('onChange');
        var reader = new FileReader();
@@ -66,6 +67,12 @@ export class FileUploadComponent implements OnInit {
         this.saveFiles(files);
     }
 
+    upload(){
+        
+        if(this.selectedimage){
+            this.saveFiles(this.selectedimage);
+        }
+    }
 
     saveFiles(files){
       this.errors = []; // Clear error

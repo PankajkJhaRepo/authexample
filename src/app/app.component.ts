@@ -15,6 +15,8 @@ export class AppComponent {
   title = 'IOT information app';
   isVisible=false;
   isLoggedIn:boolean=false;
+  loggedinImage:string='';
+  claim:any={};
   navLinks=[
     {
       path:'/',
@@ -68,12 +70,15 @@ export class AppComponent {
 
           this.oauthService.events.filter(e => e.type === 'logout').subscribe(e => {
             this.isLoggedIn=false;
+            this.claim={};
            // console.debug('Your session has been terminated!');
           });
           
           this.oauthService.events.filter(e => e.type === 'token_received').subscribe(e => {
             this.isLoggedIn=true;
-            console.log('token_received');
+            this.claim = this.oauthService.getIdentityClaims();
+            this.loggedinImage= this.claim.picture
+           // console.log('token_received');
             // this.oauthService.loadUserProfile().then(res=>{
             //     console.log('profile loaded');
             //    console.log(res);

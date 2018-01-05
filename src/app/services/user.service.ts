@@ -11,7 +11,7 @@ import { forEach } from "@angular/router/src/utils/collection";
 
 @Injectable()
 export class UserService{
-    baseURL:string= 'http://personalnformationservice.azurewebsites.net' 
+    baseURL:string= 'https://personalnformationservice.azurewebsites.net' 
     //baseURL:string= 'http://localhost:18611'
     constructor(private http:Http,
                 private authenticationService:AuthenticationService) {

@@ -7,7 +7,7 @@ import { strictEqual } from "assert";
 
 @Injectable()
 export class UserImageService{
-    baseURL:string= 'http://personalnformationservice.azurewebsites.net' 
+    baseURL:string= 'https://personalnformationservice.azurewebsites.net' 
 //    'http://localhost:18611'
     constructor(private http:Http,
         private authenticationService:AuthenticationService) {

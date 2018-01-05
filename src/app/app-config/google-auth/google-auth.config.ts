@@ -27,7 +27,7 @@ issuer: 'https://accounts.google.com',
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
-  clientId: '',
+  clientId: '101297816857-8b78qb6gb75k12gqlehah91h3ufmb0ho.apps.googleusercontent.com',
 
   strictDiscoveryDocumentValidation: false,
 

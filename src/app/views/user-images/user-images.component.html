@@ -14,8 +14,15 @@
 </div>
 
 <ul *ngFor="let img of allImages" >
-    <li>{{img.name}}</li>
-   <li> 
+    <li>{{img.name}}
+        <div>
+            <img  width="50px" height="50px" [src]="img.url" >
+            <button name="setAsProfile" (click)="SetAsProfile(img)" >Set as profile image</button>
+            <button name="delete" (click)="Delete(img)" >Delete image</button>
+        </div>
+
+    </li>
+   <!-- <li>  -->
         <!-- <app-file-upload 
         userId="profile.email" 
         imageType="UserProfile" 
@@ -24,10 +31,7 @@
         maxSize="2"
         fileExt="JPG, GIF, PNG"
         (uploadStatus)="refreshImages($event)" >  -->
-        <div>
-            <img width="50px" height="50px" [src]="img.url" >
-            <button name="setAsProfile" (click)="SetAsProfile(img)" >Set as profile image</button>
-        </div>
-    </li>
+        
+    <!-- </li> -->
         
 </ul>

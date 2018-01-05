@@ -7,7 +7,8 @@ import { strictEqual } from "assert";
 
 @Injectable()
 export class UserImageService{
-    baseURL:string='http://localhost:18611'
+    baseURL:string= 'http://personalnformationservice.azurewebsites.net' 
+//    'http://localhost:18611'
     constructor(private http:Http,
         private authenticationService:AuthenticationService) {
         
@@ -34,12 +35,44 @@ export class UserImageService{
         let imgList:any= response.json();
         if(imgList && imgList.Images.length > 0){
             for(var img of imgList.Images){
-                images.push({name: img.Name,size:img.Size,url:img.Url })
+                images.push({name: img.Name,size:img.Size,url:img.Url,personId:img.PersonId,persistedFaceId:img.persistedFaceId })
             }
         }
         return images;
         }
         );
+
+    }
+    Delete(image:AppImages){
+        
+        let header=new Headers({'Authorization': 'Bearer' + this.authenticationService.token})
+        header.append('Content-Type','application/json');
+        //{ 'Content-Type': 'application/json' }
+        let imageDTO:any={};
+        imageDTO.Name=image.name;
+        imageDTO.Size=image.size;
+        imageDTO.Created=null;
+        imageDTO.Modified=null;
+
+        imageDTO.Url=image.url;
+        imageDTO.PersonId=image.personId;
+        imageDTO.persistedFaceId=image.persistedFaceId;
+        
+        //let options=new RequestOptions({headers:header});
+        
+        var data = {
+            image: imageDTO,
+           };
+           
+           var config = new RequestOptions( {
+            body:imageDTO,
+            params: data,
+            headers : header
+           });
+
+        return this.http.delete(this.baseURL + '/api/Image',config).map((response:Response)=> response.json());
+      //let options=new RequestOptions({headers:header});
+      //return this.http.post(this.baseURL + '/api/Image/delete',imageDTO,options).map((response:Response)=> response.json());
 
     }
 }

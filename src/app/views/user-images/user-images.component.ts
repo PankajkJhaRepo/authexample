@@ -35,5 +35,20 @@ export class UserImagesComponent implements OnInit {
             console.log(res);
         })
     }
+    Delete(imageModel){
+        this.profile.pictureUrl=imageModel.url;
+        this.userimageService.Delete(imageModel).subscribe(res=>{
+            console.log(res);
+        })
+    }
+    refreshImages(event){
+        if(event){
+            //console.log(event);
+            this.userimageService.getAllApplicationImages(this.claim.email).subscribe(res=>{
+                this.allImages=res;
+           })
+        }
+       
+    }
 
 }

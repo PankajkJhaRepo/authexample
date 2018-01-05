@@ -1,5 +1,5 @@
 const ServerConfig = {
-    Server:'http://localhost:18611/api/',
+    Server:'https://personalnformationservice.azurewebsites.net/api/',
     URL:{
         UserProfile:'Information/PostUserProfile'
     }

@@ -6,7 +6,8 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class FileService {
-    _baseURL: string = 'http://localhost:18611/api/Image'
+    _baseURL: string = 'https://personalnformationservice.azurewebsites.net/api/Image'
+    //_baseURL: string = 'http://localhost:18611/api/Image'
     constructor(private http: Http) { }
 
     upload(files, parameters){      
